@@ -1,0 +1,19 @@
+schema: '2.0'
+stages:
+  featurize:
+    cmd: python src/features.py
+    deps:
+    - path: data/raw/bearing_cwru
+      hash: md5
+      md5: df1b5bf10bcaaaa8da5205cc4eb283bd.dir
+      size: 493340776
+      nfiles: 97
+    - path: src/features.py
+      hash: md5
+      md5: 77d4a8426677c8e627052621f2ed1e28
+      size: 2929
+    outs:
+    - path: data/processed/features.csv
+      hash: md5
+      md5: 215fffa66dcf1777e7af53b1381e6fe2
+      size: 19840

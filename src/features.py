@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import kurtosis, skew
 from scipy.fft import fft
+from scipy.io import loadmat
 
 RAW_DATA_DIR = "data/raw/bearing_cwru"
 PROCESSED_DIR = "data/processed"
@@ -40,11 +41,17 @@ def compute_frequency_features(signal, sampling_rate=12000):
         "spectral_energy": spectral_energy,
     }
 
-
 def load_signal(file_path):
-    """Load vibration signal from CSV or TXT"""
-    data = np.loadtxt(file_path)
-    return data
+    """Load vibration signal from MAT, CSV or TXT"""
+    if file_path.endswith('.mat'):
+        data_dict = loadmat(file_path)
+        # CWRU keys usually contain 'DE' (Drive End) or 'FE' (Fan End)
+        # This finds the first key that looks like a data array
+        for key in data_dict.keys():
+            if "DE_time" in key or "FE_time" in key:
+                return data_dict[key].flatten()
+    
+    return np.loadtxt(file_path)
 
 
 def extract_features():
@@ -54,7 +61,8 @@ def extract_features():
 
     for root, _, files in os.walk(RAW_DATA_DIR):
         for file in files:
-            if file.endswith(".csv") or file.endswith(".txt"):
+            #if file.endswith(".csv") or file.endswith(".txt"):
+            if file.endswith((".csv", ".txt", ".mat")):
                 file_path = os.path.join(root, file)
 
                 try:

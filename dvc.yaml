@@ -1,0 +1,16 @@
+stages:
+  featurize:
+    cmd: python src/features.py
+    deps:
+    - data/raw/bearing_cwru
+    - src/features.py
+    outs:
+    - data/processed/features.csv
+  train:
+    cmd: python src/train.py --data data/processed/features.csv --model 
+      models/model.pkl
+    deps:
+    - data/processed/features.csv
+    - src/train.py
+    outs:
+    - models/model.pkl
