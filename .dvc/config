@@ -1,0 +1,4 @@
+[core]
+    remote = mylocal
+['remote "mylocal"']
+    url = /home/rainer/dvc_cache_remote
