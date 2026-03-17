@@ -1,0 +1,23 @@
+artifact_path: /home/rainer/RAMP/mlruns/0/models/m-a0993c17d0d248678d33a04440d95811/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.10.0
+model_id: m-a0993c17d0d248678d33a04440d95811
+model_size_bytes: 37829
+model_uuid: m-a0993c17d0d248678d33a04440d95811
+prompts: null
+run_id: 06624702d56d469a9cb3002062409c44
+utc_time_created: '2026-03-17 17:01:19.245902'
